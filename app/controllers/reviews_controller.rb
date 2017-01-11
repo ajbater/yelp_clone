@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
 
 
   def new
+    p current_user
+    p review_params
     @restaurant = Restaurant.find review_params[:restaurant_id]
     @review = @restaurant.build_review review_params, current_user
   end
@@ -24,6 +26,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
+    p @review
     params.require(:review).permit(:thoughts, :rating)
   end
 
