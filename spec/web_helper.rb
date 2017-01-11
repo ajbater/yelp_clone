@@ -7,6 +7,14 @@ def sign_up
   click_button 'Sign up'
 end
 
+def sign_up_user2
+  visit '/users/sign_up'
+  fill_in 'Email', with: 'user2@user.com'
+  fill_in 'Password', with: 'password123'
+  fill_in 'Password confirmation', with: 'password123'
+  click_button 'Sign up'
+end
+
 def user_creates_restaurant
   click_link 'Add a restaurant'
   fill_in 'Name', with: 'KFC'

@@ -69,6 +69,15 @@ feature 'restaurants' do
       expect(page).to have_content 'Kentucky Fried Chicken'
       expect(page).to have_content 'Chicken'
     end
+    scenario 'users cannot edit restaurants belonging to other users' do
+      sign_up
+      user_creates_restaurant
+      click_link('Sign out')
+      sign_up_user2
+      expect(current_path).to eq '/'
+      click_link 'Edit KFC'
+      expect(page).to have_content "You cannot edit someone else's restaurant"
+    end
   end
 
   context 'deleting restaurants' do
