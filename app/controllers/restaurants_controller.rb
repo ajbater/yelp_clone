@@ -2,6 +2,15 @@ class RestaurantsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != Restaurant.find(params[:id]).user
+      redirect_to '/restaurants'
+      flash[:notice] = "You cannot edit or delete someone else's restaurant"
+    end
+  end
+
   def index
     @restaurants = Restaurant.all
   end
@@ -26,11 +35,6 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
-    user = current_user
-    if @restaurant.user_id != current_user.id
-      redirect_to '/restaurants'
-      flash[:notice] = "You cannot edit someone else's restaurant"
-    end
   end
 
   def update

@@ -76,7 +76,7 @@ feature 'restaurants' do
       sign_up_user2
       expect(current_path).to eq '/'
       click_link 'Edit KFC'
-      expect(page).to have_content "You cannot edit someone else's restaurant"
+      expect(page).to have_content "You cannot edit or delete someone else's restaurant"
     end
   end
 
