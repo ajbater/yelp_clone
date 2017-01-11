@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show]
 
-  before_filter :require_permission, only: :edit
+  before_action :require_permission, only: [:edit, :destroy]
 
   def require_permission
     if current_user != Restaurant.find(params[:id]).user

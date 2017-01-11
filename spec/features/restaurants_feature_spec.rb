@@ -92,6 +92,16 @@ feature 'restaurants' do
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
+
+    scenario 'users cannot delete restaurants that do not belong to them' do
+      sign_up
+      user_creates_restaurant
+      click_link('Sign out')
+      sign_up_user2
+      expect(current_path).to eq '/'
+      click_link 'Delete KFC'
+      expect(page).to have_content "You cannot edit or delete someone else's restaurant"
+    end
   end
 
   context 'needs a user' do
