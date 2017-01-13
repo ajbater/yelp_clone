@@ -37,8 +37,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'envyable'
 gem 'shoulda'
-gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'paperclip'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
