@@ -37,9 +37,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'envyable'
 gem 'shoulda'
-gem 'poltergeist'
-gem 'database_cleaner'
 gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -53,6 +52,8 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :development do

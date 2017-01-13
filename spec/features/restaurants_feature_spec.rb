@@ -48,6 +48,16 @@ feature 'restaurants' do
         expect(current_path).to eq '/restaurants'
       end
 
+      scenario 'user can upload an image of the restaurant' do
+        click_link 'Add a restaurant'
+        fill_in 'Name', with: 'Subway'
+        fill_in 'Description', with: 'Sandwiches'
+        attach_file('restaurant_image', File.absolute_path('./public/images/000/000/002/thumb/missing.png'))
+        click_button 'Create Restaurant'
+        assert page.has_xpath?('/html/body/img')
+        # assert page.has_xpath?("//img[@alt='/system/restaurants/images/000/000/003/thumb/missing.png?1484317956' and @src = 'missing']")
+      end
+
       context 'an invalid restaurant' do
         scenario 'does not let you submit a name that is too short' do
           visit '/restaurants'
@@ -65,6 +75,7 @@ feature 'restaurants' do
 
         before do
           sign_up
+          p current_path
           create_restaurant
         end
 
@@ -130,9 +141,5 @@ feature 'restaurants' do
       expect(current_path).to eq '/'
       expect(page).to have_content('You must have created this restaurant to do this')
     end
-
-
   end
-
-
 end
