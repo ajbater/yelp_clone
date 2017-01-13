@@ -7,8 +7,9 @@
       - restaurant.reviews.each do |review|
         %p #{review.thoughts}
         %p #{review.rating}
-        = link_to "Endorse Review", review_endorsements_path(review), method: :post
-        %p= pluralize review.endorsements.count, 'endorsement'
+        = link_to "Endorse Review", review_endorsements_path(review), class: 'endorsements-link'
+        %span.endorsements_count= review.endorsements.count
+        = 'endorsement'.pluralize review.endorsements.count
         - if current_user == review.user(params[:id])
           = link_to "Delete #{restaurant.name} review", review_path(review), method: :delete
     - else
