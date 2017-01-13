@@ -37,6 +37,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'envyable'
 gem 'shoulda'
+gem 'poltergeist'
+gem 'database_cleaner'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
